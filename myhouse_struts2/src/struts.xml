@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.devMode" value="true" />
+   <constant name="struts.multipart.saveDir" value="D:/temp"/>
+   <package name="basedefault" extends="struts-default" namespace="/">
+   <interceptors>
+     	<interceptor name="CharSetIntecepter" class="com.myhouse.intecepter.CharSetIntecepter">
+     	</interceptor>
+     	<interceptor name="CheckIntecepter" class="com.myhouse.intecepter.CheckIntecepter">
+     	</interceptor>
+     	<interceptor-stack name="houseinterceptor">
+     	<interceptor-ref name="defaultStack"></interceptor-ref>
+     	<interceptor-ref name="CharSetIntecepter"></interceptor-ref>
+     	<interceptor-ref name="cookie"></interceptor-ref>
+     	</interceptor-stack>
+     </interceptors>
+     <default-interceptor-ref name="houseinterceptor"></default-interceptor-ref>
+     
+   </package>
+   <package name="helloworld" extends="basedefault" namespace="/">
+     
+    
+      <action name="login" class ="com.myhouse.action.LoginAction" method = "login">
+      <result name = "success" type = "redirect">/list.action</result>
+      </action>
+      
+      <action name="list" class ="com.myhouse.action.ListAction" method = "list">
+      <result name = "success" >/list.jsp</result>
+ 
+      </action>
+      
+      <action name="del" class ="com.myhouse.action.ListAction" method = "del">
+      <result name = "success" type = "redirect" >/list.action</result>
+      </action>
+       <action name="editprepare" class ="com.myhouse.action.ListAction" method = "editprepare">
+      <result name = "success">/edithouse.jsp</result>
+      </action>
+       <action name="edit" class ="com.myhouse.action.ListAction" method = "edit">
+      <result name = "success" type = "redirect">/list.action</result>
+      </action>
+       <action name="register" class ="com.myhouse.action.RegisterAction" method = "register">
+      <result name = "success">/regsuccess.jsp</result>
+      </action>
+       <action name="publicprepare" class ="com.myhouse.action.PublicAction" method = "publicprepare">
+       <interceptor-ref name="defaultStack"></interceptor-ref>
+       <interceptor-ref name="CharSetIntecepter"></interceptor-ref>
+      <result name = "success" >/public.jsp</result>
+      
+      </action>
+      <action name="publichouse" class ="com.myhouse.action.PublicAction" method = "publichouse">
+      <result name = "success" type = "redirect">/list.action</result>
+      </action>
+      
+      <action name="search" class ="com.myhouse.action.IndexAction" method = "search">
+      <result name = "success" >/index.jsp</result>
+      </action>
+      <action name="detail" class ="com.myhouse.action.IndexAction" method = "detail">
+      <result name = "success" >/details.jsp</result>
+      </action>
+      <!-- more actions can be listed here -by www.yiibai.com/struts2 -->
+
+   </package>
+   <!-- more packages can be listed here -->
+</struts>

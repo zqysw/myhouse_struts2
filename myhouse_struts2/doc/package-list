@@ -1,0 +1,7 @@
+com.myhouse.action
+com.myhouse.dao
+com.myhouse.entity
+com.myhouse.filter
+com.myhouse.myhouseUtils
+com.myhouse.service
+com.myhouse.web.servlet
